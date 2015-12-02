@@ -58,10 +58,10 @@ class MyAP:
 
 
 if __name__ == "__main__":
-    ap = MyAP('192.168.2.24')
+    ap = MyAP('192.168.2.28')
     ap.connect()
     ap.get_countrycode()
-    ap.set_chainmask_5(4)
+    ap.set_chainmask_2(1)
 
 
     # fo = open('commands', 'r')
