@@ -164,7 +164,7 @@ class AccessPoint:
 if __name__ == "__main__":
 
 
-    ap = AccessPoint("mac-44d9e702010c")
+    ap = AccessPoint("mac-0418d6c0662f")
     #link = "ftp://10.1.1.47/uap/heads/feature-uapgen2-stable-bsteering/80_2015-10-29_13%3A47%3A43_xi.chen_4b9f930/uap_qca956x/bin/latest_firmware-bootrom.bin"
     #ap.upgrade_ap_stress(link, 500)
 

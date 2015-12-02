@@ -41,16 +41,18 @@ class MyAP:
         stdin, stdout, stderr = self.ssh.exec_command('iwpriv wifi0 rxchainmask ' + str(bitmask))
         stdin, stdout, stderr = self.ssh.exec_command('ifconfig wifi0 down')
         stdin, stdout, stderr = self.ssh.exec_command('ifconfig wifi0 up')
-        # stdin, stdout, stderr = self.ssh.exec_command('iwpriv wifi0 get_txchainmask')
-        # stdin, stdout, stderr = self.ssh.exec_command('iwpriv wifi0 get_rxchainmask')
+        time.sleep(1)
+        stdin, stdout, stderr = self.ssh.exec_command('iwpriv wifi0 get_txchainmask')
+        stdin, stdout, stderr = self.ssh.exec_command('iwpriv wifi0 get_rxchainmask')
 
     def set_chainmask_5(self, bitmask):
         stdin, stdout, stderr = self.ssh.exec_command('iwpriv wifi1 txchainmask ' + str(bitmask))
         stdin, stdout, stderr = self.ssh.exec_command('iwpriv wifi1 rxchainmask ' + str(bitmask))
         stdin, stdout, stderr = self.ssh.exec_command('ifconfig wifi1 down')
         stdin, stdout, stderr = self.ssh.exec_command('ifconfig wifi1 up')
-        # stdin, stdout, stderr = self.ssh.exec_command('iwpriv wifi0 get_txchainmask')
-        # stdin, stdout, stderr = self.ssh.exec_command('iwpriv wifi0 get_rxchainmask')
+        time.sleep(1)
+        stdin, stdout, stderr = self.ssh.exec_command('iwpriv wifi0 get_txchainmask')
+        stdin, stdout, stderr = self.ssh.exec_command('iwpriv wifi0 get_rxchainmask')
 
 
 
