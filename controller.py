@@ -88,6 +88,9 @@ class AccessPoint:
             x+=1
             print "Reboot: " + str(x)
             time.sleep(250)
+            ping_test('192.168.1.238', 'ctest2_5_lr')
+            time.sleep(5)
+
 
 
     def two_g(self, ht):
@@ -168,7 +171,7 @@ if __name__ == "__main__":
     #link = "ftp://10.1.1.47/uap/heads/feature-uapgen2-stable-bsteering/80_2015-10-29_13%3A47%3A43_xi.chen_4b9f930/uap_qca956x/bin/latest_firmware-bootrom.bin"
     #ap.upgrade_ap_stress(link, 500)
 
-    ap.reboot_ap_stress(10)
+    ap.reboot_ap_stress(500)
 
 
 
