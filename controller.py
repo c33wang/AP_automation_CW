@@ -11,8 +11,8 @@ class AccessPoint:
 
     #Basic Action#
 
-    def __init__(self, mac):
-        self.mac = mac
+    def __init__(self, ipaddr):
+        self.ipaddr = ipaddr
         self.ip = "https://localhost:8443/login"
         self.user = "admin"
         self.pw = "admin"
@@ -37,6 +37,16 @@ class AccessPoint:
     def mac_address(self, mac):
         driver = self.driver
         driver.find_element_by_xpath("//tbody/tr[@class ="" '" + mac + "']/td[2]").click()
+
+        #html/body/div[2]/div/div[2]/div/div[1]/div[1]/div/div[2]/table/tbody/tr[*]/td[@class = 'complex-cell column-ip'][contains(.,'192.168.1.250')]
+        #//tr[*]/td[@class = 'complex-cell column-ip'][contains(text(),'192.168.1.1')]/preceding::td[2]
+
+    def ip_adress(self):
+        ipaddr = self.ipaddr
+        driver = self.driver
+        path = "//tr[*]/td[@class = 'complex-cell column-ip'][text()='" + ipaddr + "']/preceding::td[2]"
+        driver.find_element_by_xpath(path).click()
+
 
     def configuration_tab(self):
         driver = self.driver
@@ -128,7 +138,7 @@ class AccessPoint:
     def configure_2g_channel_width(self, ht):
         self.login()
         self.device_tab()
-        self.mac_address(self.mac)
+        self.ip_adress()
         self.configuration_tab()
         self.radio_tab()
         self.two_g(ht)
@@ -136,7 +146,7 @@ class AccessPoint:
     def configure_5g_channel_width(self, ht):
         self.login()
         self.device_tab()
-        self.mac_address(self.mac)
+        self.ip_adress()
         self.configuration_tab()
         self.radio_tab()
         self.five_g(ht)
@@ -144,14 +154,14 @@ class AccessPoint:
     def upgrade_ap(self, link):
         self.login()
         self.device_tab()
-        self.mac_address(self.mac)
+        self.ip_adress()
         self.configuration_tab()
         self.custom_upgrade_tab(link)
 
     def upgrade_ap_stress(self, link, num):
         self.login()
         self.device_tab()
-        self.mac_address(self.mac)
+        self.ip_adress()
         self.configuration_tab()
         self.custom_upgrade_tab_stress(link, num)
 
@@ -167,11 +177,14 @@ class AccessPoint:
 if __name__ == "__main__":
 
 
-    ap = AccessPoint("mac-0418d6c0662f")
+
+
+    ap = AccessPoint("192.168.1.17")
+    ap.configure_5g_channel_width(20)
+
     #link = "ftp://10.1.1.47/uap/heads/feature-uapgen2-stable-bsteering/80_2015-10-29_13%3A47%3A43_xi.chen_4b9f930/uap_qca956x/bin/latest_firmware-bootrom.bin"
     #ap.upgrade_ap_stress(link, 500)
-
-    ap.reboot_ap_stress(500)
+    #ap.reboot_ap_stress(500)
 
 
 
