@@ -37,7 +37,6 @@ class AccessPoint:
     def mac_address(self, mac):
         driver = self.driver
         driver.find_element_by_xpath("//tbody/tr[@class ="" '" + mac + "']/td[2]").click()
-
         #html/body/div[2]/div/div[2]/div/div[1]/div[1]/div/div[2]/table/tbody/tr[*]/td[@class = 'complex-cell column-ip'][contains(.,'192.168.1.250')]
         #//tr[*]/td[@class = 'complex-cell column-ip'][contains(text(),'192.168.1.1')]/preceding::td[2]
 
@@ -93,8 +92,10 @@ class AccessPoint:
 
     def reboot_ap(self,num):
         driver = self.driver
+        ipaddr = self.ipaddr
         for x in range(0, num):
-            driver.find_element_by_xpath("//tbody/tr[@class ="" '" + self.mac + "']/td[24]/button[2]").click()
+            path = "//tr[*]/td[@class = 'complex-cell column-ip'][text()='" + ipaddr + "']/following-sibling::td[20]/button[2]"
+            driver.find_element_by_xpath(path).click()
             x+=1
             print "Reboot: " + str(x)
             time.sleep(250)
