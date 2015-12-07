@@ -20,6 +20,9 @@ class AccessPoint:
         self.driver.implicitly_wait(10)
         self.driver.get(self.ip)
 
+    def quit_browser(self):
+        self.driver.close()
+
     def login(self):
         driver = self.driver
         time.sleep(1)
@@ -176,9 +179,6 @@ class AccessPoint:
 
 
 if __name__ == "__main__":
-
-
-
 
     ap = AccessPoint("192.168.1.17")
     ap.configure_5g_channel_width(20)
