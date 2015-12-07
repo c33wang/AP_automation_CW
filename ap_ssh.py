@@ -51,8 +51,8 @@ class MyAP:
         stdin, stdout, stderr = self.ssh.exec_command('ifconfig wifi1 down')
         stdin, stdout, stderr = self.ssh.exec_command('ifconfig wifi1 up')
         time.sleep(1)
-        stdin, stdout, stderr = self.ssh.exec_command('iwpriv wifi0 get_txchainmask')
-        stdin, stdout, stderr = self.ssh.exec_command('iwpriv wifi0 get_rxchainmask')
+        stdin, stdout, stderr = self.ssh.exec_command('iwpriv wifi1 get_txchainmask')
+        stdin, stdout, stderr = self.ssh.exec_command('iwpriv wifi1 get_rxchainmask')
 
 
 
