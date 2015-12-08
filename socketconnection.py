@@ -9,12 +9,12 @@ def play_youtube(ip,num):
     sock.connect((ip, PORT))
     sock.sendall(num + "\n")
 
-play_youtube("192.168.5.1", "two")
-play_youtube("192.168.5.2", "two")
-play_youtube("192.168.5.3", "two")
-play_youtube("192.168.5.4", "two")
-play_youtube("192.168.5.5", "two")
-play_youtube("192.168.5.6", "two")
+play_youtube("192.168.5.1", "three")
+play_youtube("192.168.5.2", "three")
+#play_youtube("192.168.5.3", "three")
+play_youtube("192.168.5.4", "three")
+play_youtube("192.168.5.5", "three")
+play_youtube("192.168.5.6", "three")
 
 
 

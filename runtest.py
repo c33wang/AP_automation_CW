@@ -2,8 +2,11 @@ __author__ = 'GatewayControl'
 
 from controller import *
 from ap_ssh import *
-import shlex, subprocess
+import subprocess
 import time
+
+
+iperf3_command = "iperf3 -f m -t 5 -O 3 -c 192.168.2.38"
 
 
 
@@ -14,7 +17,7 @@ def max_throughput(mIPaddress):
     controllerAP.configure_5g_channel_width(20)
     controllerAP.quit_browser()
     time.sleep(120)
-    out = subprocess.check_output("iperf3 -f m -t 5 -O 3 -c 192.168.2.38", shell=True)
+    out = subprocess.check_output(iperf3_command, shell=True)
     outputlist = out.split('\n')
     print outputlist[len(outputlist)-5]
     print outputlist[len(outputlist)-4]
@@ -39,20 +42,43 @@ def max_throughput(mIPaddress):
     print outputlist[len(outputlist)-5]
     print outputlist[len(outputlist)-4]
 
+def chainmask_throughput(cIPaddress):
+    sshap = MyAP(cIPaddress)
+    sshap.connect()
+
+    sshap.set_chainmask_5(1)
+    sshap.exec_command('iwpriv wifi1 get_txchainmask')
+
+    sshap.set_chainmask_5(2)
+    sshap.exec_command('iwpriv wifi1 get_txchainmask')
+
+
+    sshap.set_chainmask_5(4)
+    sshap.exec_command('iwpriv wifi1 get_txchainmask')
+
+
+    #max_throughput(cIPaddress)
+
+
+
+
+
 if __name__ == "__main__":
-    max_throughput("192.168.1.250")
+    #max_throughput("192.168.1.250")
+    #chainmask_throughput("192.168.1.250")
 
-#ap = AccessPoint("mac-0418d6c0662f")
-# ap.configure_5g_channel_width(20)
-#
-# apssh = MyAP('192.168.2.28')
-# apssh.connect()
-# ap.set_chainmask_5(1)
+    #print "5G VHT20"
+    #controllerAP = AccessPoint(mIPaddress)
+    #controllerAP.configure_5g_channel_width(20)
+    #controllerAP.quit_browser()
+    #time.sleep(120)
+    out = subprocess.check_output(iperf3_command, shell=True)
+    outputlist = out.split('\n')
+    print outputlist[len(outputlist)-5]
+    print outputlist[len(outputlist)-4]
 
 
 
-#ap = AccessPoint("192.168.1.17")
-#ap.reboot_ap_stress(500)
 
 
 
