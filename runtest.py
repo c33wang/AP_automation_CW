@@ -6,8 +6,8 @@ import subprocess
 import time
 
 
-iperf3_command = "iperf3 -f m -t 5 -O 3 -c 192.168.2.38"
-mIPaddress = "192.168.1.250"
+iperf3_command = "iperf3 -f m -t 5 -O 3 -c 192.168.1.232"
+mIPaddress = "192.168.2.24"
 
 
 
@@ -37,9 +37,10 @@ def chainmask_throughput(mIPaddress):
         controllerAP.quit_browser()
 
         for bitmaskk in [1, 2, 4]:
+            time.sleep(90)
             sshap.set_chainmask_5(bitmaskk)
             sshap.exec_command('iwpriv wifi1 get_txchainmask')
-            time.sleep(120)
+            time.sleep(95)
             out = subprocess.check_output(iperf3_command, shell=True)
             outputlist = out.split('\n')
             print outputlist[len(outputlist)-5]
@@ -63,7 +64,7 @@ def chainmask_throughput(mIPaddress):
 
 if __name__ == "__main__":
     #max_throughput("192.168.1.250")
-    chainmask_throughput("192.168.1.250")
+    chainmask_throughput(mIPaddress)
 
     #print "5G VHT20"
     #controllerAP = AccessPoint(mIPaddress)
