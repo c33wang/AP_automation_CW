@@ -52,7 +52,7 @@ class AccessPoint:
 
     def configuration_tab(self):
         driver = self.driver
-        driver.find_element_by_xpath("html/body/div[2]/div/div[3]/div[2]/div/div/div[2]/div[4]/ul/li[4]/a").click()
+        driver.find_element_by_xpath("html/body/div[*]/div/div[3]/div[2]/div/div/div[2]/div[4]/ul/li[4]/a").click()
 
     def radio_tab(self):
         driver = self.driver
