@@ -109,31 +109,31 @@ class AccessPoint:
 
     def two_g(self, ht):
         driver = self.driver
-        driver.find_element_by_xpath("/html/body/div[2]/div/div[3]/div[2]/div/div/div[2]/div[4]/\
+        driver.find_element_by_xpath("/html/body/div[*]/div/div[3]/div[2]/div/div/div[2]/div[4]/\
                 div[1]/div[4]/div/div[4]/form/fieldset[1]/div[1]/div/div[2]/span/a/span[2]").click()
         if ht == 20:
-                    driver.find_element_by_xpath("/html/body/div[2]/div/div[3]/div[2]/div/div/div[2]/div[4]/\
+                    driver.find_element_by_xpath("/html/body/div[*]/div/div[3]/div[2]/div/div/div[2]/div[4]/\
                 div[1]/div[4]/div/div[4]/form/fieldset[1]/div[1]/div/div[2]/div/ul/li[1]/a").click()
         else:
-                    driver.find_element_by_xpath("/html/body/div[2]/div/div[3]/div[2]/div/div/div[2]/div[4]/\
+                    driver.find_element_by_xpath("/html/body/div[*]/div/div[3]/div[2]/div/div/div[2]/div[4]/\
                 div[1]/div[4]/div/div[4]/form/fieldset[1]/div[1]/div/div[2]/div/ul/li[2]/a").click()
         driver.find_element_by_xpath("/html/body/div[2]/div/div[3]/div[2]/div/div/div[2]/div[4]/div[1]/div[4]/\
                 div/div[4]/form/button").click()
 
     def five_g(self, ht):
         driver = self.driver
-        driver.find_element_by_xpath("/html/body/div[2]/div/div[3]/div[2]/div/div/div[2]/div[4]/\
+        driver.find_element_by_xpath("/html/body/div[*]/div/div[3]/div[2]/div/div/div[2]/div[4]/\
                 div[1]/div[4]/div/div[4]/form/fieldset[2]/div[1]/div/div[2]/span/a/span[2]").click()
         if ht == 20:
-                    driver.find_element_by_xpath(" /html/body/div[2]/div/div[3]/div[2]/div/div/div[2]/div[4]/\
+                    driver.find_element_by_xpath(" /html/body/div[*]/div/div[3]/div[2]/div/div/div[2]/div[4]/\
                     div[1]/div[4]/div/div[4]/form/fieldset[2]/div[1]/div/div[2]/div/ul/li[1]").click()
         elif ht == 40:
-                    driver.find_element_by_xpath(" /html/body/div[2]/div/div[3]/div[2]/div/div/div[2]/div[4]/\
+                    driver.find_element_by_xpath(" /html/body/div[*]/div/div[3]/div[2]/div/div/div[2]/div[4]/\
                     div[1]/div[4]/div/div[4]/form/fieldset[2]/div[1]/div/div[2]/div/ul/li[2]").click()
         else:
-                    driver.find_element_by_xpath(" /html/body/div[2]/div/div[3]/div[2]/div/div/div[2]/div[4]/\
+                    driver.find_element_by_xpath(" /html/body/div[*]/div/div[3]/div[2]/div/div/div[2]/div[4]/\
                     div[1]/div[4]/div/div[4]/form/fieldset[2]/div[1]/div/div[2]/div/ul/li[3]").click()
-        driver.find_element_by_xpath("/html/body/div[2]/div/div[3]/div[2]/div/div/div[2]/div[4]/div[1]/div[4]/\
+        driver.find_element_by_xpath("/html/body/div[*]/div/div[3]/div[2]/div/div/div[2]/div[4]/div[1]/div[4]/\
                     div/div[4]/form/button").click()
 
 
