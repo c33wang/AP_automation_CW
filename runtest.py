@@ -6,8 +6,8 @@ import subprocess
 import time
 
 
-iperf3_command = "iperf3 -f m -t 5 -O 3 -c 192.168.1.174"
-mIPaddress = "192.168.1.248"
+iperf3_command = "iperf3 -f m -t 50 -O 3 -c 192.168.2.38"
+mIPaddress = "192.168.2.24"
 
 
 
