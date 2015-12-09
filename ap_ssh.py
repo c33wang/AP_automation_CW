@@ -60,10 +60,10 @@ class MyAP:
 
 
 if __name__ == "__main__":
-    sshap = MyAP('192.168.2.24')
+    sshap = MyAP('192.168.1.248')
     sshap.connect()
     sshap.get_countrycode()
-    sshap.set_chainmask_5(1)
+    sshap.set_chainmask_2(2)
 
 
     # fo = open('commands', 'r')
