@@ -6,8 +6,8 @@ import subprocess
 import time
 
 
-iperf3_command = "iperf3 -f m -t 50 -O 3 -c 192.168.2.38"
-mIPaddress = "192.168.2.24"
+iperf3_command = "iperf3 -f m -t 50 -O 3 -c 192.168.1.174"
+mIPaddress = "192.168.1.248"
 
 
 
@@ -89,8 +89,10 @@ def max_throughput_2(mIPaddress):
 
 
 if __name__ == "__main__":
+    chainmask_throughput(mIPaddress)
+
     #max_throughput("192.168.1.250")
-    max_throughput_2(mIPaddress)
+    #max_throughput_2(mIPaddress)
 
     #print "5G VHT20"
     #controllerAP = AccessPoint(mIPaddress)
