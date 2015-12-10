@@ -89,8 +89,8 @@ def max_throughput_2(mIPaddress):
 
 
 if __name__ == "__main__":
-    #max_throughput("192.168.1.250")
-    max_throughput_2(mIPaddress)
+    max_throughput(mIPaddress)
+    #max_throughput_2(mIPaddress)
 
     #print "5G VHT20"
     #controllerAP = AccessPoint(mIPaddress)

@@ -122,8 +122,7 @@ class AccessPoint:
 
     def five_g(self, ht):
         driver = self.driver
-        driver.find_element_by_xpath("/html/body/div[*]/div/div[3]/div[2]/div/div/div[2]/div[4]/\
-                div[1]/div[4]/div/div[4]/form/fieldset[2]/div[1]/div/div[2]/span/a/span[2]").click()
+        driver.find_element_by_xpath("//div/div[2]/div[4]/div[1]/div[4]/div/div[4]/form/fieldset[2]/div[1]/div/div[2]/span/a/span[2]").click()
         if ht == 20:
                     driver.find_element_by_xpath(" /html/body/div[*]/div/div[3]/div[2]/div/div/div[2]/div[4]/\
                     div[1]/div[4]/div/div[4]/form/fieldset[2]/div[1]/div/div[2]/div/ul/li[1]").click()
