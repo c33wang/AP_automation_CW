@@ -17,6 +17,7 @@ class AccessPoint:
         self.user = "admin"
         self.pw = "admin"
         self.driver = webdriver.Firefox()
+        self.driver.maximize_window()
         self.driver.implicitly_wait(10)
         self.driver.get(self.ip)
 
