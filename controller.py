@@ -137,6 +137,18 @@ class AccessPoint:
                     div/div[4]/form/button").click()
 
 
+
+    def five_g_ch(self, ch):
+        driver = self.driver
+        driver.find_element_by_xpath("//a[@id = 'channel-radio-na44d9e790581d-button']/span[2]").click()
+        #driver.find_element_by_xpath("//fieldset[2]/div[1]/div/div[1]/div/ul/li[*]/a[text() = '40']").click()
+        driver.find_element_by_xpath("//fieldset[2]/div[1]/div/div[1]/div/ul/li[*]/a[text() = '" + str(ch) + "']").click()
+
+        driver.find_element_by_xpath("/html/body/div[*]/div/div[3]/div[2]/div/div/div[2]/div[4]/div[1]/div[4]/\
+                    div/div[4]/form/button").click()
+
+
+
     #Configure AP#
 
     def configure_2g_channel_width(self, ht):
@@ -154,6 +166,15 @@ class AccessPoint:
         self.configuration_tab()
         self.radio_tab()
         self.five_g(ht)
+
+    def configure_5g_channel(self, ch):
+        self.login()
+        self.device_tab()
+        self.ip_adress()
+        self.configuration_tab()
+        self.radio_tab()
+        self.five_g_ch(ch)
+
 
     def upgrade_ap(self, link):
         self.login()
@@ -180,8 +201,8 @@ class AccessPoint:
 
 if __name__ == "__main__":
 
-    ap = AccessPoint("192.168.1.248")
-    ap.configure_5g_channel_width(20)
+    ap = AccessPoint("192.168.2.24")
+    ap.configure_5g_channel(157)
 
     #link = "ftp://10.1.1.47/uap/heads/feature-uapgen2-stable-bsteering/80_2015-10-29_13%3A47%3A43_xi.chen_4b9f930/uap_qca956x/bin/latest_firmware-bootrom.bin"
     #ap.upgrade_ap_stress(link, 500)

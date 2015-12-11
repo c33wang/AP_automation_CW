@@ -6,9 +6,9 @@ import subprocess
 import time
 
 
-iperf3_TX = "iperf3 -f m -t 6 -O 3 -c 192.168.1.174 -P 10"
-iperf3_RX = "iperf3 -f m -t 6 -O 3 -c 192.168.1.174 -P 10 -R"
-AP_iPaddress = "192.168.1.227"
+iperf3_TX = "iperf3 -f m -t 6 -O 3 -c 192.168.1.236 -P 10"
+iperf3_RX = "iperf3 -f m -t 6 -O 3 -c 192.168.1.236 -P 10 -R"
+AP_iPaddress = "192.168.2.24"
 
 
 
