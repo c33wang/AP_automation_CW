@@ -12,6 +12,29 @@ AP_iPaddress = "192.168.2.24"
 
 
 
+def max_throughput_5_ch(AP_iPaddress):
+    for x in [20, 40, 80]:
+        print "5G VHT%d TX:" %x
+        controllerAP = AccessPoint(AP_iPaddress)
+        controllerAP.configure_5g_channel_width(x)
+        controllerAP.quit_browser()
+        time.sleep(120)
+        for ch in [36,40,44,48,149,153,157,161]:
+            controllerAP.configure_5g_channel(ch)
+            print "Channel:" + str(ch)
+            time.sleep(120)
+            out = subprocess.check_output(iperf3_TX, shell=True)
+            outputlist = out.split('\n')
+            print outputlist[len(outputlist)-5]
+            print outputlist[len(outputlist)-4]
+
+            print "5G VHT%d RX:" %x
+            out = subprocess.check_output(iperf3_RX, shell=True)
+            outputlist = out.split('\n')
+            print outputlist[len(outputlist)-5]
+            print outputlist[len(outputlist)-4]
+
+
 def max_throughput_5(AP_iPaddress):
     for x in [20, 40, 80]:
         print "5G VHT%d TX:" %x
@@ -29,6 +52,7 @@ def max_throughput_5(AP_iPaddress):
         outputlist = out.split('\n')
         print outputlist[len(outputlist)-5]
         print outputlist[len(outputlist)-4]
+
 
 
 
