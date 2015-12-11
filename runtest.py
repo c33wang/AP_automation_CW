@@ -6,23 +6,53 @@ import subprocess
 import time
 
 
-iperf3_command = "iperf3 -f m -t 5 -O 3 -c 192.168.1.174"
-mIPaddress = "192.168.1.227"
+iperf3_TX = "iperf3 -f m -t 6 -O 3 -c 192.168.1.236 -P 10"
+iperf3_RX = "iperf3 -f m -t 6 -O 3 -c 192.168.1.236 -P 10 -R"
+AP_iPaddress = "192.168.2.24"
 
 
 
-
-def max_throughput(mIPaddress):
+def max_throughput_5_ch(AP_iPaddress):
     for x in [20, 40, 80]:
-        print "5G VHT%d" %x
-        controllerAP = AccessPoint(mIPaddress)
+        print "5G VHT%d TX:" %x
+        controllerAP = AccessPoint(AP_iPaddress)
         controllerAP.configure_5g_channel_width(x)
         controllerAP.quit_browser()
         time.sleep(120)
-        out = subprocess.check_output(iperf3_command, shell=True)
+        for ch in [36,40,44,48,149,153,157,161]:
+            controllerAP.configure_5g_channel(ch)
+            print "Channel:" + str(ch)
+            time.sleep(120)
+            out = subprocess.check_output(iperf3_TX, shell=True)
+            outputlist = out.split('\n')
+            print outputlist[len(outputlist)-5]
+            print outputlist[len(outputlist)-4]
+
+            print "5G VHT%d RX:" %x
+            out = subprocess.check_output(iperf3_RX, shell=True)
+            outputlist = out.split('\n')
+            print outputlist[len(outputlist)-5]
+            print outputlist[len(outputlist)-4]
+
+
+def max_throughput_5(AP_iPaddress):
+    for x in [20, 40, 80]:
+        print "5G VHT%d TX:" %x
+        controllerAP = AccessPoint(AP_iPaddress)
+        controllerAP.configure_5g_channel_width(x)
+        controllerAP.quit_browser()
+        time.sleep(120)
+        out = subprocess.check_output(iperf3_TX, shell=True)
         outputlist = out.split('\n')
         print outputlist[len(outputlist)-5]
         print outputlist[len(outputlist)-4]
+
+        print "5G VHT%d RX:" %x
+        out = subprocess.check_output(iperf3_RX, shell=True)
+        outputlist = out.split('\n')
+        print outputlist[len(outputlist)-5]
+        print outputlist[len(outputlist)-4]
+
 
 
 
@@ -43,7 +73,7 @@ def chainmask_throughput(mIPaddress):
             sshap.set_chainmask_5(bitmaskk)
             sshap.exec_command('iwpriv wifi1 get_txchainmask')
             time.sleep(95)
-            out = subprocess.check_output(iperf3_command, shell=True)
+            out = subprocess.check_output(iperf3_RX, shell=True)
             outputlist = out.split('\n')
             print outputlist[len(outputlist)-5]
             print outputlist[len(outputlist)-4]
@@ -67,7 +97,7 @@ def max_throughput_2(mIPaddress):
             sshap.set_chainmask_2(bitmaskk)
             sshap.exec_command('iwpriv wifi0 get_txchainmask')
             time.sleep(95)
-            out = subprocess.check_output(iperf3_command, shell=True)
+            out = subprocess.check_output(iperf3_RX, shell=True)
             outputlist = out.split('\n')
             print outputlist[len(outputlist)-5]
             print outputlist[len(outputlist)-4]
@@ -89,7 +119,7 @@ def max_throughput_2(mIPaddress):
 
 
 if __name__ == "__main__":
-    max_throughput(mIPaddress)
+    max_throughput_5(AP_iPaddress)
     #max_throughput_2(mIPaddress)
 
     #print "5G VHT20"
