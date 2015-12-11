@@ -18,9 +18,11 @@ def max_throughput_5_ch(AP_iPaddress):
         controllerAP = AccessPoint(AP_iPaddress)
         controllerAP.configure_5g_channel_width(x)
         controllerAP.quit_browser()
-        time.sleep(120)
+        time.sleep(10)
         for ch in [36,40,44,48,149,153,157,161]:
+            controllerAP = AccessPoint(AP_iPaddress)
             controllerAP.configure_5g_channel(ch)
+            controllerAP.quit_browser()
             print "Channel:" + str(ch)
             time.sleep(120)
             out = subprocess.check_output(iperf3_TX, shell=True)
@@ -119,7 +121,7 @@ def max_throughput_2(mIPaddress):
 
 
 if __name__ == "__main__":
-    max_throughput_5(AP_iPaddress)
+    max_throughput_5_ch(AP_iPaddress)
     #max_throughput_2(mIPaddress)
 
     #print "5G VHT20"
