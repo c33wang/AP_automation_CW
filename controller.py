@@ -224,9 +224,9 @@ class AccessPoint:
 
 if __name__ == "__main__":
 
-    ap = AccessPoint("192.168.2.24")
-    #ap.configure_5g_channel(157)
-    ap.configure_2g_channel(4)
+    ap = AccessPoint("192.168.1.227")
+    ap.configure_5g_channel(157)
+    #ap.configure_2g_channel(4)
 
     #link = "ftp://10.1.1.47/uap/heads/feature-uapgen2-stable-bsteering/80_2015-10-29_13%3A47%3A43_xi.chen_4b9f930/uap_qca956x/bin/latest_firmware-bootrom.bin"
     #ap.upgrade_ap_stress(link, 500)

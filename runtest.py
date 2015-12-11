@@ -6,11 +6,15 @@ import subprocess
 import time
 
 
+#Screen Room Settling
+iperf3_TX = "iperf3 -f m -t 300 -O 3 -c 192.168.1.174 -P 10"
+iperf3_RX = "iperf3 -f m -t 300 -O 3 -c 192.168.1.174 -P 10 -R"
+AP_iPaddress = "192.168.1.227"
+
+
 iperf3_TX = "iperf3 -f m -t 6 -O 3 -c 192.168.1.236 -P 10"
 iperf3_RX = "iperf3 -f m -t 6 -O 3 -c 192.168.1.236 -P 10 -R"
 AP_iPaddress = "192.168.2.24"
-
-
 
 def max_throughput_5_ch(AP_iPaddress):
     for x in [20, 40, 80]:
@@ -24,7 +28,7 @@ def max_throughput_5_ch(AP_iPaddress):
             controllerAP.configure_5g_channel(ch)
             controllerAP.quit_browser()
             print "Channel:" + str(ch)
-            time.sleep(120)
+            time.sleep(180)
             out = subprocess.check_output(iperf3_TX, shell=True)
             outputlist = out.split('\n')
             print outputlist[len(outputlist)-5]
