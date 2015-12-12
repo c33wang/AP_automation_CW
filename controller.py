@@ -118,8 +118,7 @@ class AccessPoint:
         else:
                     driver.find_element_by_xpath("/html/body/div[*]/div/div[3]/div[2]/div/div/div[2]/div[4]/\
                 div[1]/div[4]/div/div[4]/form/fieldset[1]/div[1]/div/div[2]/div/ul/li[2]/a").click()
-        driver.find_element_by_xpath("/html/body/div[2]/div/div[3]/div[2]/div/div/div[2]/div[4]/div[1]/div[4]/\
-                div/div[4]/form/button").click()
+        driver.find_element_by_xpath("//div/div[3]/div[2]/div/div/div[2]/div[4]/div[1]/div[4]/div/div[4]/form/button").click()
 
 
 
@@ -128,8 +127,7 @@ class AccessPoint:
         driver.find_element_by_xpath("//div[4]/div[1]/div[4]/div/div[4]/form/fieldset[1]/div[1]/div/div[1]/span/a/span[2]").click()
         #driver.find_element_by_xpath("//fieldset[2]/div[1]/div/div[1]/div/ul/li[*]/a[text() = '40']").click()
         driver.find_element_by_xpath("//fieldset[1]/div[1]/div/div[1]/div/ul/li[*]/a[text() = '" + str(ch) + "']").click()
-        driver.find_element_by_xpath("/html/body/div[*]/div/div[3]/div[2]/div/div/div[2]/div[4]/div[1]/div[4]/\
-                    div/div[4]/form/button").click()
+        driver.find_element_by_xpath("//div/div[3]/div[2]/div/div/div[2]/div[4]/div[1]/div[4]/div/div[4]/form/button").click()
 
 
 

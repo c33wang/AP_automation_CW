@@ -179,7 +179,7 @@ def max_throughput_2(mIPaddress):
 
 
 if __name__ == "__main__":
-    max_throughput_5_ch(AP_iPaddress)
+    max_throughput_2_ch(AP_iPaddress)
     #max_throughput_2(mIPaddress)
 
     #print "5G VHT20"
