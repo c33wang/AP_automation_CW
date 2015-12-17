@@ -59,6 +59,7 @@ class MyAP:
 
 
 
+
 if __name__ == "__main__":
     sshap = MyAP('192.168.2.24')
     sshap.connect()

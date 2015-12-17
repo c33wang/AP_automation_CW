@@ -14,7 +14,7 @@ import time
 
 iperf3_TX = "iperf3 -f m -t 6 -O 3 -c 192.168.1.236 -P 10"
 iperf3_RX = "iperf3 -f m -t 6 -O 3 -c 192.168.1.236 -P 10 -R"
-AP_iPaddress = "192.168.2.24"
+AP_iPaddress = "192.168.2.46"
 
 
 ##############################################----5G----###############################################################
@@ -135,25 +135,7 @@ def max_throughput_2(AP_iPaddress):
         print outputlist[len(outputlist)-4]
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def max_throughput_2(mIPaddress):
+def chainmask_throughput_2(mIPaddress):
 
     sshap = MyAP(mIPaddress)
     sshap.connect()
@@ -179,7 +161,8 @@ def max_throughput_2(mIPaddress):
 
 
 if __name__ == "__main__":
-    max_throughput_2_ch(AP_iPaddress)
+    #max_throughput_2_ch(AP_iPaddress)
+    chainmask_throughput_2(AP_iPaddress)
     #max_throughput_2(mIPaddress)
 
     #print "5G VHT20"
