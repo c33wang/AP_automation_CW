@@ -4,7 +4,8 @@ from itertools import cycle
 from wifi import *
 
 
-tags_fw = "ftp://10.1.1.47/uap/tags/3.4.8/uap_qca956x/bin/latest_firmware-bootrom.bin"
+tags_fw = "http://10.1.0.5/build/uap/tags/3.4.11/uap_qca956x/bin/latest_firmware-bootrom.bin"
+#tags_fw = "ftp://10.1.1.47/uap/tags/3.4.8/uap_qca956x/bin/latest_firmware-bootrom.bin"
 
 
 class AccessPoint:
@@ -223,11 +224,12 @@ class AccessPoint:
 if __name__ == "__main__":
 
     ap = AccessPoint("192.168.1.227")
-    ap.configure_5g_channel(157)
+    #ap.configure_5g_channel(157)
     #ap.configure_2g_channel(4)
+    link = "http://10.1.0.5/build/uap/tags/3.4.10/uap_qca956x/bin/latest_firmware-bootrom.bin"
 
     #link = "ftp://10.1.1.47/uap/heads/feature-uapgen2-stable-bsteering/80_2015-10-29_13%3A47%3A43_xi.chen_4b9f930/uap_qca956x/bin/latest_firmware-bootrom.bin"
-    #ap.upgrade_ap_stress(link, 500)
+    ap.upgrade_ap_stress(link, 500)
     #ap.reboot_ap_stress(500)
 
 
