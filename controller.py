@@ -4,8 +4,7 @@ from itertools import cycle
 from wifi import *
 
 
-tags_fw = "http://10.1.0.5/build/uap/tags/3.4.11/uap_qca956x/bin/latest_firmware-bootrom.bin"
-#tags_fw = "ftp://10.1.1.47/uap/tags/3.4.8/uap_qca956x/bin/latest_firmware-bootrom.bin"
+tags_fw = "ftp://10.1.1.47/uap/tags/3.4.8/uap_qca956x/bin/latest_firmware-bootrom.bin"
 
 
 class AccessPoint:
@@ -59,6 +58,11 @@ class AccessPoint:
     def radio_tab(self):
         driver = self.driver
         driver.find_element_by_xpath(".//*[@id='ui-accordion-3-header-1']/div").click()
+
+    def wlan_tab(self):
+        driver = self.driver
+        driver.find_element_by_xpath(".//*[@id='ui-accordion-3-header-2']/div").click()
+
 
     def custom_upgrade_tab(self, link):
         driver = self.driver
@@ -158,6 +162,22 @@ class AccessPoint:
         driver.find_element_by_xpath("/html/body/div[*]/div/div[3]/div[2]/div/div/div[2]/div[4]/div[1]/div[4]/\
                     div/div[4]/form/button").click()
 
+    def wlan(self, g):
+        driver = self.driver
+        if g == 5:
+            #2g off
+            driver.find_element_by_xpath("//div[4]/div[1]/div[4]/div/div[6]/fieldset[1]/div/div/div[1]/span/a/span[2]").click()
+            driver.find_element_by_xpath("//div[1]/div[2]/div[4]/div[1]/div[4]/div/div[6]/fieldset[1]/div/div/div[1]/div/ul/li[2]/a").click()
+            #5g on
+            driver.find_element_by_xpath("//div[1]/div[2]/div[4]/div[1]/div[4]/div/div[6]/fieldset[2]/div/div/div[1]/span/a/span[2]").click()
+            driver.find_element_by_xpath("//div[1]/div[2]/div[4]/div[1]/div[4]/div/div[6]/fieldset[2]/div/div/div[1]/div/ul/li[1]/a").click()
+        else:
+            #2g on
+            driver.find_element_by_xpath("//div[4]/div[1]/div[4]/div/div[6]/fieldset[1]/div/div/div[1]/span/a/span[2]").click()
+            driver.find_element_by_xpath("//div[1]/div[2]/div[4]/div[1]/div[4]/div/div[6]/fieldset[1]/div/div/div[1]/div/ul/li[1]/a").click()
+            #5g off
+            driver.find_element_by_xpath("//div[1]/div[2]/div[4]/div[1]/div[4]/div/div[6]/fieldset[2]/div/div/div[1]/span/a/span[2]").click()
+            driver.find_element_by_xpath("//div[1]/div[2]/div[4]/div[1]/div[4]/div/div[6]/fieldset[2]/div/div/div[1]/div/ul/li[2]/a").click()
 
 
     #Configure AP#
@@ -198,12 +218,31 @@ class AccessPoint:
         self.five_g_ch(ch)
 
 
+    def wlan2g_on(self):
+        self.login()
+        self.device_tab()
+        self.ip_adress()
+        self.configuration_tab()
+        self.wlan_tab()
+        self.wlan(2)
+
+    def wlan5g_on(self):
+        self.login()
+        self.device_tab()
+        self.ip_adress()
+        self.configuration_tab()
+        self.wlan_tab()
+        self.wlan(5)
+
+
     def upgrade_ap(self, link):
         self.login()
         self.device_tab()
         self.ip_adress()
         self.configuration_tab()
         self.custom_upgrade_tab(link)
+
+## test cases##
 
     def upgrade_ap_stress(self, link, num):
         self.login()
@@ -221,15 +260,23 @@ class AccessPoint:
 
 
 
+
+
+
 if __name__ == "__main__":
 
-    ap = AccessPoint("192.168.1.227")
+    ap = AccessPoint("192.168.2.48")
+    ap.wlan2g_on()
+    ap.quit_browser()
+
+    ap = AccessPoint("192.168.2.48")
+
+    ap.wlan5g_on()
     #ap.configure_5g_channel(157)
     #ap.configure_2g_channel(4)
-    link = "http://10.1.0.5/build/uap/tags/3.4.10/uap_qca956x/bin/latest_firmware-bootrom.bin"
 
     #link = "ftp://10.1.1.47/uap/heads/feature-uapgen2-stable-bsteering/80_2015-10-29_13%3A47%3A43_xi.chen_4b9f930/uap_qca956x/bin/latest_firmware-bootrom.bin"
-    ap.upgrade_ap_stress(link, 500)
+    #ap.upgrade_ap_stress(link, 500)
     #ap.reboot_ap_stress(500)
 
 

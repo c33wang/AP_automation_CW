@@ -12,9 +12,9 @@ import time
 #AP_iPaddress = "192.168.1.227"
 
 
-iperf3_TX = "iperf3 -f m -t 60 -O 3 -c 192.168.1.236 -P 10"
-iperf3_RX = "iperf3 -f m -t 60 -O 3 -c 192.168.1.236 -P 10 -R"
-AP_iPaddress = "192.168.2.46"
+iperf3_TX = "iperf3 -f m -t 60 -O 3 -c 192.168.2.9 -P 10"
+iperf3_RX = "iperf3 -f m -t 60 -O 3 -c 192.168.2.9 -P 10 -R"
+AP_iPaddress = "192.168.2.24"
 
 
 ##############################################----5G----###############################################################
@@ -162,8 +162,8 @@ def chainmask_throughput_2(mIPaddress):
 
 if __name__ == "__main__":
     #max_throughput_2_ch(AP_iPaddress)
-    chainmask_throughput_2(AP_iPaddress)
-    #max_throughput_2(mIPaddress)
+    #chainmask_throughput_2(AP_iPaddress)
+    max_throughput_2(AP_iPaddress)
 
     #print "5G VHT20"
     #controllerAP = AccessPoint(mIPaddress)
