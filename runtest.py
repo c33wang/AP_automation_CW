@@ -7,18 +7,21 @@ import time
 
 
 #Screen Room Settling
-#iperf3_TX = "iperf3 -f m -t 300 -O 3 -c 192.168.1.174 -P 10"
-#iperf3_RX = "iperf3 -f m -t 300 -O 3 -c 192.168.1.174 -P 10 -R"
-#AP_iPaddress = "192.168.1.227"
+iperf3_TX = "iperf3 -f m -t 300 -O 3 -c 192.168.1.174 -P 10"
+iperf3_RX = "iperf3 -f m -t 300 -O 3 -c 192.168.1.174 -P 10 -R"
+AP_iPaddress = "192.168.1.197"
 
 
-iperf3_TX = "iperf3 -f m -t 60 -O 3 -c 192.168.2.9 -P 10"
-iperf3_RX = "iperf3 -f m -t 60 -O 3 -c 192.168.2.9 -P 10 -R"
-AP_iPaddress = "192.168.2.24"
+#iperf3_TX = "iperf3 -f m -t 6 -O 3 -c 192.168.1.236 -P 10"
+#iperf3_RX = "iperf3 -f m -t 6 -O 3 -c 192.168.1.236 -P 10 -R"
+#AP_iPaddress = "192.168.2.24"
 
 
 ##############################################----5G----###############################################################
 def max_throughput_5_ch(AP_iPaddress):
+    controllerAP = AccessPoint(AP_iPaddress)
+    controllerAP.wlan5g_on()
+    controllerAP.quit_browser()
     for x in [20, 40, 80]:
         print "5G VHT%d TX:" %x
         controllerAP = AccessPoint(AP_iPaddress)
@@ -92,6 +95,9 @@ def chainmask_throughput(mIPaddress):
 
 
 def max_throughput_2_ch(AP_iPaddress):
+    controllerAP = AccessPoint(AP_iPaddress)
+    controllerAP.wlan2g_on()
+    controllerAP.quit_browser()
     for x in [20, 40]:
         print "2G VHT%d TX:" %x
         controllerAP = AccessPoint(AP_iPaddress)
@@ -135,7 +141,9 @@ def max_throughput_2(AP_iPaddress):
         print outputlist[len(outputlist)-4]
 
 
-def chainmask_throughput_2(mIPaddress):
+
+
+def max_throughput_2(mIPaddress):
 
     sshap = MyAP(mIPaddress)
     sshap.connect()
@@ -162,20 +170,13 @@ def chainmask_throughput_2(mIPaddress):
 
 if __name__ == "__main__":
     #max_throughput_2_ch(AP_iPaddress)
-    #chainmask_throughput_2(AP_iPaddress)
-    max_throughput_2(AP_iPaddress)
+    #max_throughput_2_ch(AP_iPaddress)
+    max_throughput_5_ch(AP_iPaddress)
+    print "*****************************2G*********************************************"
+    max_throughput_2_ch(AP_iPaddress)
 
-    #print "5G VHT20"
-    #controllerAP = AccessPoint(mIPaddress)
-    #controllerAP.configure_5g_channel_width(20)
-    #controllerAP.quit_browser()
-    #time.sleep(120)
-    # out = subprocess.check_output(iperf3_command, shell=True)
-    # outputlist = out.split('\n')
-    # print outputlist[len(outputlist)-5]
-    # print outputlist[len(outputlist)-4]
-
-
+    # ap = AccessPoint("192.168.1.196")
+    # link = "ftp://10.1.1.47/uap/heads/hotfix-qca956x-3.4.11/39_2015-12-16_17%3A33%3A12_kmluoh_cd43af3/uap_qca956x/bin/latest_firmware-bootrom.bin"
 
 
 

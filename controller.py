@@ -268,10 +268,9 @@ if __name__ == "__main__":
     ap = AccessPoint("192.168.2.48")
     ap.wlan2g_on()
     ap.quit_browser()
-
     ap = AccessPoint("192.168.2.48")
-
     ap.wlan5g_on()
+
     #ap.configure_5g_channel(157)
     #ap.configure_2g_channel(4)
 
