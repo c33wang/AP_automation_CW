@@ -259,6 +259,72 @@ class AccessPoint:
 
 
 
+##############################################----5G----###############################################################
+def max_throughput_5_ch(AP_iPaddress, iperf3_TX, iperf3_RX):
+
+    controllerAP = AccessPoint(AP_iPaddress)
+    controllerAP.wlan5g_on()
+    controllerAP.quit_browser()
+
+    for x in [20, 40, 80]:
+        print "5G VHT%d TX:" %x
+        controllerAP = AccessPoint(AP_iPaddress)
+        controllerAP.configure_5g_channel_width(x)
+        controllerAP.quit_browser()
+        time.sleep(10)
+        for ch in [36,40,44,48,149,153,157,161]:
+            controllerAP = AccessPoint(AP_iPaddress)
+            controllerAP.configure_5g_channel(ch)
+            controllerAP.quit_browser()
+            print "Channel:" + str(ch)
+            time.sleep(222)
+            out = subprocess.check_output(iperf3_TX, shell=True)
+            outputlist = out.split('\n')
+            print outputlist[len(outputlist)-5]
+            print outputlist[len(outputlist)-4]
+
+            print "5G VHT%d RX:" %x
+            out = subprocess.check_output(iperf3_RX, shell=True)
+            outputlist = out.split('\n')
+            print outputlist[len(outputlist)-5]
+            print outputlist[len(outputlist)-4]
+
+
+
+##############################################----2G----###############################################################
+
+
+def max_throughput_2_ch(AP_iPaddress, iperf3_TX, iperf3_RX ):
+
+    controllerAP = AccessPoint(AP_iPaddress)
+    controllerAP.wlan2g_on()
+    controllerAP.quit_browser()
+
+    for x in [20, 40]:
+        print "2G VHT%d TX:" %x
+        controllerAP = AccessPoint(AP_iPaddress)
+        controllerAP.configure_2g_channel_width(x)
+        controllerAP.quit_browser()
+        time.sleep(10)
+        for ch in [1,2,3,4,5,6,7,8,9,10,11]:
+            controllerAP = AccessPoint(AP_iPaddress)
+            controllerAP.configure_2g_channel(ch)
+            controllerAP.quit_browser()
+            print "Channel:" + str(ch)
+            time.sleep(222)
+            out = subprocess.check_output(iperf3_TX, shell=True)
+            outputlist = out.split('\n')
+            print outputlist[len(outputlist)-5]
+            print outputlist[len(outputlist)-4]
+
+            print "2G VHT%d RX:" %x
+            out = subprocess.check_output(iperf3_RX, shell=True)
+            outputlist = out.split('\n')
+            print outputlist[len(outputlist)-5]
+            print outputlist[len(outputlist)-4]
+
+
+
 
 
 
