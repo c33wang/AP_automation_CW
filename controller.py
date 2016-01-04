@@ -276,13 +276,13 @@ def max_throughput_5_ch(AP_iPaddress, iperf3_TX, iperf3_RX):
             controllerAP.configure_5g_channel(ch)
             controllerAP.quit_browser()
             time.sleep(222)
-            print "Channel:" + str(ch) + "5G VHT%d TX:" %x
+            print "Channel:" + str(ch) + "      5G VHT%d TX:" %x
             out = subprocess.check_output(iperf3_TX, shell=True)
             outputlist = out.split('\n')
             print outputlist[len(outputlist)-5]
             print outputlist[len(outputlist)-4]
             time.sleep(10)
-            print "Channel:" + str(ch) + "5G VHT%d RX:" %x
+            print "Channel:" + str(ch) + "      5G VHT%d RX:" %x
             out = subprocess.check_output(iperf3_RX, shell=True)
             outputlist = out.split('\n')
             print outputlist[len(outputlist)-5]
@@ -309,13 +309,13 @@ def max_throughput_2_ch(AP_iPaddress, iperf3_TX, iperf3_RX ):
             controllerAP.configure_2g_channel(ch)
             controllerAP.quit_browser()
             time.sleep(222)
-            print "Channel:" + str(ch) + "2G VHT%d TX:" %x
+            print "Channel:" + str(ch) + "      2G VHT%d TX:" %x
             out = subprocess.check_output(iperf3_TX, shell=True)
             outputlist = out.split('\n')
             print outputlist[len(outputlist)-5]
             print outputlist[len(outputlist)-4]
             time.sleep(10)
-            print "Channel:" + str(ch) + "2G VHT%d RX:" %x
+            print "Channel:" + str(ch) + "      2G VHT%d RX:" %x
             out = subprocess.check_output(iperf3_RX, shell=True)
             outputlist = out.split('\n')
             print outputlist[len(outputlist)-5]
@@ -329,14 +329,14 @@ def max_throughput_2_ch(AP_iPaddress, iperf3_TX, iperf3_RX ):
 
 if __name__ == "__main__":
 
-    ap = AccessPoint("192.168.2.48")
-    ap.wlan2g_on()
-    ap.quit_browser()
-    ap = AccessPoint("192.168.2.48")
-    ap.wlan5g_on()
+    ap = AccessPoint("192.168.1.203")
+    #ap.wlan2g_on()
+    #ap.quit_browser()
+    #ap = AccessPoint("192.168.2.48")
+    #ap.wlan5g_on()
 
     #ap.configure_5g_channel(157)
-    #ap.configure_2g_channel(4)
+    ap.configure_2g_channel(4)
 
     #link = "ftp://10.1.1.47/uap/heads/feature-uapgen2-stable-bsteering/80_2015-10-29_13%3A47%3A43_xi.chen_4b9f930/uap_qca956x/bin/latest_firmware-bootrom.bin"
     #ap.upgrade_ap_stress(link, 500)
