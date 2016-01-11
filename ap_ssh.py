@@ -8,7 +8,7 @@ class MyAP:
     def __init__(self, ip):
 
         self.ip = ip
-        self.username = "admin"
+        self.username = "root"
         self.password = "admin"
 
         self.ssh = paramiko.SSHClient()
@@ -55,16 +55,57 @@ class MyAP:
         stdin, stdout, stderr = self.ssh.exec_command('iwpriv wifi1 get_rxchainmask')
 
 
+    def set_bw_5(self, bw):
+        stdin, stdout, stderr = self.ssh.exec_command('iwpriv ath2 mode 11ACVHT' + str(bw))
+        stdin, stdout, stderr = self.ssh.exec_command('ifconfig ath2 down')
+        stdin, stdout, stderr = self.ssh.exec_command('ifconfig ath2 up')
+
+    def set_bw_2(self, bw):
+        stdin, stdout, stderr = self.ssh.exec_command('iwpriv ath0 mode 11NGHT' + str(bw))
+        stdin, stdout, stderr = self.ssh.exec_command('ifconfig ath0 down')
+        stdin, stdout, stderr = self.ssh.exec_command('ifconfig ath0 up')
+
+
+
+#########################################openwrt#################################################
+
+    def wrt_restart(self):
+        stdin, stdout, stderr = self.ssh.exec_command('/etc/init.d/network restart')
+
+    def wrt_set_bw_5(self, bw):
+        stdin, stdout, stderr = self.ssh.exec_command('uci set wireless.wifi1.htmode=HT' + str(bw))
+
+    def wrt_set_ch_5(self, ch):
+        stdin, stdout, stderr = self.ssh.exec_command('uci set wireless.wifi1.channel=' + str(ch))
+
+    def wrt_set_bw_2(self, bw):
+        stdin, stdout, stderr = self.ssh.exec_command('uci set wireless.wifi0.htmode=HT' + str(bw))
+
+    def wrt_set_bw_2(self, ch):
+        stdin, stdout, stderr = self.ssh.exec_command('uci set wireless.wifi0.channel=' + str(ch))
+
+
+
+def get_station_info(ssh_ap_address):
+    sshap = MyAP(ssh_ap_address)
+    sshap.connect()
+
+    sshap.wrt_set_ch_5(ch)
+    sshap.wrt_restart()
 
 
 
 
+    sshap.close()
 
 if __name__ == "__main__":
-    sshap = MyAP('192.168.2.24')
-    sshap.connect()
-    sshap.get_countrycode()
-    sshap.set_chainmask_2(1)
+    get_station_info('192.168.1.1')
+
+
+
+
+
+
 
 
     # fo = open('commands', 'r')
