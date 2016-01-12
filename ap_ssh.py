@@ -90,7 +90,7 @@ def get_station_info(ssh_ap_address):
     sshap = MyAP(ssh_ap_address)
     sshap.connect()
 
-    sshap.wrt_set_ch_5(ch)
+    sshap.wrt_set_ch_5(36)
     sshap.wrt_restart()
 
 
