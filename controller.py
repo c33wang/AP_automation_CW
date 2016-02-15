@@ -76,7 +76,7 @@ class AccessPoint:
     def custom_upgrade_tab_stress(self, link, num):
         driver = self.driver
         #CUSTOM UPGRADE
-        driver.find_element_by_id("ui-accordion-3-header-6").click()
+        driver.find_element_by_id("ui-accordion-3-header-7").click()
 
         myIterator = cycle(range(2))
 
@@ -97,7 +97,36 @@ class AccessPoint:
             driver.find_element_by_xpath("html/body/div[last()]/div[3]/div/button[1]").click()
             x+=1
             time.sleep(250)
-            ping_test('192.168.1.238', '10')
+            ping_test('10.5.1.8', 'MultiClient')
+
+
+
+    #version 4.9.1 and below
+    # def custom_upgrade_tab_stress(self, link, num):
+    #     driver = self.driver
+    #     #CUSTOM UPGRADE
+    #     driver.find_element_by_id("ui-accordion-3-header-6").click()
+    #
+    #     myIterator = cycle(range(2))
+    #
+    #     for x in range(0, num):
+    #
+    #         if myIterator.next() == 0:
+    #             uglink = tags_fw
+    #             print "Install tag firmware: " + str(x)
+    #         else:
+    #             uglink = link
+    #             print "Upgrading firmware: " + str(x)
+    #
+    #         print uglink
+    #         driver.find_element_by_xpath("//button[span='Custom Upgrade']").click()
+    #         textfield = driver.find_element_by_name("upgrade-url")
+    #         textfield.send_keys(uglink)
+    #         driver.find_element_by_xpath("//button[contains(@class, 'red')]").click()
+    #         driver.find_element_by_xpath("html/body/div[last()]/div[3]/div/button[1]").click()
+    #         x+=1
+    #         time.sleep(250)
+    #         ping_test('192.168.1.238', '10')
 
     def reboot_ap(self,num):
         driver = self.driver
@@ -246,6 +275,7 @@ class AccessPoint:
 
     def upgrade_ap_stress(self, link, num):
         self.login()
+        time.sleep(2)
         self.device_tab()
         self.ip_adress()
         self.configuration_tab()
@@ -329,17 +359,17 @@ def max_throughput_2_ch(AP_iPaddress, iperf3_TX, iperf3_RX ):
 
 if __name__ == "__main__":
 
-    ap = AccessPoint("192.168.1.203")
+    ap = AccessPoint("10.5.1.8")
     #ap.wlan2g_on()
     #ap.quit_browser()
     #ap = AccessPoint("192.168.2.48")
     #ap.wlan5g_on()
 
     #ap.configure_5g_channel(157)
-    ap.configure_2g_channel(4)
+    #ap.configure_2g_channel(4)
 
-    #link = "ftp://10.1.1.47/uap/heads/feature-uapgen2-stable-bsteering/80_2015-10-29_13%3A47%3A43_xi.chen_4b9f930/uap_qca956x/bin/latest_firmware-bootrom.bin"
-    #ap.upgrade_ap_stress(link, 500)
+    link = "ftp://10.1.1.47/uap/heads/hotfix-qca956x-3.4.16/17_2016-02-12_14%3A59%3A24_kmluoh_c66689d/uap_qca956x/bin/latest_firmware-bootrom.bin"
+    ap.upgrade_ap_stress(link, 500)
     #ap.reboot_ap_stress(500)
 
 

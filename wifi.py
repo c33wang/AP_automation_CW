@@ -15,7 +15,7 @@ def ping_test(sourceIp='10.1.7.31', wlan_network="10"):
     time.sleep(5)
 
 if __name__ == "__main__":
-    ping_test('192.168.1.238', 'ctest2_5_lr')
+    ping_test('192.168.1.238', '20')
 
 
     #ping_test('192.168.1.238', 'ctest2_5_lr')
