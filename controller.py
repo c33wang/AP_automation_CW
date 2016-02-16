@@ -73,31 +73,8 @@ class AccessPoint:
         driver.find_element_by_xpath("html/body/div[8]/div[3]/div/button[1]").click()
         driver.find_element_by_xpath("html/body/div[8]/div[3]/div/button[1]").click()
 
-    def custom_upgrade_tab_stress(self, link, num):
-        driver = self.driver
-        #CUSTOM UPGRADE
-        driver.find_element_by_id("ui-accordion-3-header-7").click()
 
-        myIterator = cycle(range(2))
 
-        for x in range(0, num):
-
-            if myIterator.next() == 0:
-                uglink = tags_fw
-                print "Install tag firmware: " + str(x)
-            else:
-                uglink = link
-                print "Upgrading firmware: " + str(x)
-
-            print uglink
-            driver.find_element_by_xpath("//button[span='Custom Upgrade']").click()
-            textfield = driver.find_element_by_name("upgrade-url")
-            textfield.send_keys(uglink)
-            driver.find_element_by_xpath("//button[contains(@class, 'red')]").click()
-            driver.find_element_by_xpath("html/body/div[last()]/div[3]/div/button[1]").click()
-            x+=1
-            time.sleep(250)
-            ping_test('10.5.1.8', 'MultiClient')
 
 
 
@@ -354,12 +331,46 @@ def max_throughput_2_ch(AP_iPaddress, iperf3_TX, iperf3_RX ):
 
 
 
+#######################################--Reboot--######################################################################
 
+def custom_upgrade_tab_stress(Ap_ipaddress, link, num):
+    myIterator = cycle(range(2))
+
+
+    for x in range(0, num):
+        controllerAP = AccessPoint(Ap_ipaddress)
+        controllerAP.login()
+        time.sleep(3)
+        controllerAP.device_tab()
+        controllerAP.ip_adress()
+        controllerAP.configuration_tab()
+
+        #CUSTOM UPGRADE
+        time.sleep(2)
+        controllerAP.driver.find_element_by_id("ui-accordion-3-header-7").click()
+        time.sleep(2)
+
+        if myIterator.next() == 0:
+            uglink = tags_fw
+            print "Install tag firmware: " + str(x)
+        else:
+            uglink = link
+            print "Upgrading firmware: " + str(x)
+
+        print uglink
+        controllerAP.driver.find_element_by_xpath("//button[span='Custom Upgrade']").click()
+        textfield = controllerAP.driver.find_element_by_name("upgrade-url")
+        textfield.send_keys(uglink)
+        controllerAP.driver.find_element_by_xpath("//button[contains(@class, 'red')]").click()
+        controllerAP.driver.find_element_by_xpath("html/body/div[last()]/div[3]/div/button[1]").click()
+        x+=1
+        time.sleep(250)
+        ping_test('10.5.1.14', 'MultiClient')
+        controllerAP.quit_browser()
 
 
 if __name__ == "__main__":
 
-    ap = AccessPoint("10.5.1.8")
     #ap.wlan2g_on()
     #ap.quit_browser()
     #ap = AccessPoint("192.168.2.48")
@@ -369,7 +380,8 @@ if __name__ == "__main__":
     #ap.configure_2g_channel(4)
 
     link = "ftp://10.1.1.47/uap/heads/hotfix-qca956x-3.4.16/17_2016-02-12_14%3A59%3A24_kmluoh_c66689d/uap_qca956x/bin/latest_firmware-bootrom.bin"
-    ap.upgrade_ap_stress(link, 500)
+
+    custom_upgrade_tab_stress("10.5.1.8", link, 500)
     #ap.reboot_ap_stress(500)
 
 
